@@ -19,6 +19,9 @@ npm run build
 npm run dev
 ```
 
+For the current GitHub Pages branch-root setup, `index.html` is a committed production entry that loads `./assets/...`.
+Use `index.dev.html` as the Vite development entry when editing source.
+
 ## Notes
 
 - This is a reflection and record-keeping tool, not deterministic prediction.

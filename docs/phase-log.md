@@ -45,3 +45,11 @@
 - Root cause: Vite source files were pushed, but Pages was not configured to serve the compiled `dist/` output.
 - Change: added `.github/workflows/pages.yml` to build with Vite and deploy `dist/` through GitHub Pages Actions.
 - Release topology: updated Pages source mode to GitHub Actions.
+
+## 2026-06-14 - Branch-Root Pages Hotfix
+
+- Agent: Codex.
+- Problem: GitHub Pages still served branch root after the Actions workflow succeeded.
+- Root cause: repository Pages source remained `main` / root, so the Actions artifact was not the live site source.
+- Change: copied compiled Vite assets to root `assets/`, changed root `index.html` to load compiled JS/CSS, and preserved the source Vite entry as `index.dev.html`.
+- Verification target: `https://smallwhite219.github.io/dayan-divination-web/` should no longer request `main.tsx`.

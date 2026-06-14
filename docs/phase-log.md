@@ -94,3 +94,10 @@
   - Core algorithm test passed: `dayan tests passed`.
   - Vite production build passed.
   - Root Pages assets refreshed to `index.dev-WGOiStKJ.js` and `index-B5zKw1Xi.css`.
+
+## 2026-06-15 - Stable Pages Asset Names
+
+- Agent: Codex.
+- Problem: Pages served the updated HTML and CSS, but the hashed JS path returned 404.
+- Root cause: branch-root Pages can temporarily serve mismatched hashed asset references during rapid rebuilds.
+- Change: configured Vite to output stable `assets/app.js` and `assets/app.css`, and updated root `index.html` to use those fixed paths.

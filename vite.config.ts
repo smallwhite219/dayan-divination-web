@@ -6,6 +6,11 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: 'index.dev.html',
+      output: {
+        entryFileNames: 'assets/app.js',
+        chunkFileNames: 'assets/[name].js',
+        assetFileNames: 'assets/app[extname]',
+      },
     },
   },
   plugins: [react()],

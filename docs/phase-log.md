@@ -52,4 +52,7 @@
 - Problem: GitHub Pages still served branch root after the Actions workflow succeeded.
 - Root cause: repository Pages source remained `main` / root, so the Actions artifact was not the live site source.
 - Change: copied compiled Vite assets to root `assets/`, changed root `index.html` to load compiled JS/CSS, and preserved the source Vite entry as `index.dev.html`.
-- Verification target: `https://smallwhite219.github.io/dayan-divination-web/` should no longer request `main.tsx`.
+- Verification:
+  - `https://smallwhite219.github.io/dayan-divination-web/?v=b01f353-2` returns root HTML loading `./assets/index-DqKW2qK9.js` and `./assets/index-C7knN4Il.css`.
+  - `https://smallwhite219.github.io/dayan-divination-web/assets/index-DqKW2qK9.js` returns `Content-Type: application/javascript; charset=utf-8`.
+  - The page no longer requests `./src/main.tsx`.

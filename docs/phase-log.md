@@ -80,3 +80,5 @@
   - Core algorithm test passed: `dayan tests passed`.
   - Vite build passed from `index.dev.html`, transforming 32 modules.
   - Root Pages assets refreshed to `index.dev-DU6QyCz0.js` and `index-HRFNiIVI.css`.
+  - Live Pages HTML verified at `https://smallwhite219.github.io/dayan-divination-web/?v=8aa3a56-2`.
+  - Live JS asset returns `Content-Type: application/javascript; charset=utf-8`.

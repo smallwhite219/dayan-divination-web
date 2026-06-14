@@ -21,3 +21,19 @@
 - Key decision: initialize `dayan-divination-web` as its own nested Git repository, because workspace root has unrelated dirty state.
 - Release topology: recorded in `docs/release-topology.md`.
 - Validation before upload: reuse previous `tsc`, unit test, and Vite build results.
+
+## 2026-06-14 - GitHub Upload Completed
+
+- Agent: Codex.
+- Goal: Push `dayan-divination-web` to GitHub.
+- Remote: `https://github.com/smallwhite219/dayan-divination-web.git`
+- Branch: `main`
+- Commit pushed: `89d0b12 Initial Dayan divination web app`
+- Validation:
+  - TypeScript test compile passed.
+  - Core algorithm test passed: `dayan tests passed`.
+  - TypeScript app check passed: `tsc --noEmit`.
+  - Vite production build passed.
+- Notes:
+  - GitHub CLI was not available, so upload used plain `git push`.
+  - No PR was opened because the user requested direct upload to a specific repository.

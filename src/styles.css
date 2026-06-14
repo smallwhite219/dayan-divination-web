@@ -192,6 +192,32 @@ textarea {
   font-size: 1.35rem;
 }
 
+.line-cast-panel {
+  align-items: center;
+  background: #f6f3ec;
+  border-radius: 8px;
+  display: grid;
+  gap: 18px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  padding: 18px;
+}
+
+.line-cast-panel strong {
+  display: block;
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+.line-cast-panel span {
+  color: #4f5f53;
+  line-height: 1.6;
+}
+
+.large-action {
+  min-width: 160px;
+  padding: 1rem 1.2rem;
+}
+
 .manual-guidance {
   background: #eef6ef;
   border: 1px solid #c9decc;
@@ -235,6 +261,10 @@ textarea {
 .record-table {
   display: grid;
   gap: 8px;
+  margin-top: 18px;
+}
+
+.line-history {
   margin-top: 18px;
 }
 
@@ -352,6 +382,10 @@ textarea {
 
   .line-row {
     grid-template-columns: 0.8fr 1.1fr;
+  }
+
+  .line-cast-panel {
+    grid-template-columns: 1fr;
   }
 
   .result-card-header {

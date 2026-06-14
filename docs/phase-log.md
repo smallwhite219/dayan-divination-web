@@ -67,3 +67,16 @@
   - TypeScript app check passed.
   - Core algorithm test passed: `dayan tests passed`.
   - Vite production build passed.
+
+## 2026-06-15 - Six-Press Line Casting UX
+
+- Agent: Codex.
+- Goal: Remove remainder selection entirely and let the system record each line.
+- Change: replaced manual remainder entry with a six-click "逐爻起卦" flow; each click internally completes one line and records it.
+- Rationale: users should not choose left/right remainders; the app should handle and record the divination mechanics.
+- Build note: Vite is configured to build from `index.dev.html` so the committed Pages root `index.html` does not bypass source compilation.
+- Validation:
+  - TypeScript app check passed.
+  - Core algorithm test passed: `dayan tests passed`.
+  - Vite build passed from `index.dev.html`, transforming 32 modules.
+  - Root Pages assets refreshed to `index.dev-DU6QyCz0.js` and `index-HRFNiIVI.css`.

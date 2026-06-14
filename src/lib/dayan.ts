@@ -201,7 +201,7 @@ export function createAiPrompt(result: HexagramResult): string {
     '',
     `問題：${result.question.question || '未填寫'}`,
     result.question.note ? `背景：${result.question.note}` : '',
-    `起卦模式：${result.question.mode === 'manual' ? '手動記錄' : '隨機模擬'}`,
+    `起卦模式：${result.question.mode === 'manual' ? '逐爻起卦' : '一次成卦'}`,
     `時間：${new Date(result.question.createdAt).toLocaleString('zh-TW')}`,
     '',
     '本卦六爻由下往上：',
@@ -233,7 +233,7 @@ export function createExportText(
   return [
     '大衍筮法起卦結果',
     `時間：${new Date(question.createdAt).toLocaleString('zh-TW')}`,
-    `模式：${question.mode === 'manual' ? '手動記錄' : '隨機模擬'}`,
+    `模式：${question.mode === 'manual' ? '逐爻起卦' : '一次成卦'}`,
     `問題：${question.question || '未填寫'}`,
     question.note ? `背景：${question.note}` : '',
     '',

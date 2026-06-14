@@ -20,8 +20,8 @@ npm run dev
 ```
 
 For the current GitHub Pages branch-root setup, `index.html` is a committed production entry that loads `./assets/...`.
+Vite is configured to build from `index.dev.html`, which points to `src/main.tsx`.
 After UI changes, run `npm run build`, copy the changed files from `dist/assets/` to root `assets/`, and update `index.html`.
-Use `index.dev.html` as the Vite development entry when editing source.
 
 ## Notes
 

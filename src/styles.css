@@ -279,7 +279,7 @@ textarea {
 }
 
 .line-row {
-  grid-template-columns: 0.8fr 1.2fr 1fr 0.8fr;
+  grid-template-columns: 0.8fr 150px 1fr 0.8fr;
 }
 
 .line-row.moving {
@@ -336,18 +336,40 @@ textarea {
 
 .hexagram-lines {
   display: grid;
-  gap: 6px;
+  gap: 12px;
   justify-items: start;
 }
 
-.yang-line,
-.yin-line,
-.line-mark {
-  color: #17201a;
-  font-family: "Noto Serif TC", "PMingLiU", serif;
-  font-size: 1.35rem;
-  line-height: 1;
-  white-space: pre;
+.line-glyph {
+  --line-width: 132px;
+  --line-gap: 12px;
+  --line-height: 3px;
+  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr var(--line-gap) 1fr;
+  height: 10px;
+  width: var(--line-width);
+}
+
+.line-glyph-compact {
+  --line-width: 118px;
+  --line-gap: 10px;
+}
+
+.line-segment {
+  background: #17201a;
+  display: block;
+  height: var(--line-height);
+  width: 100%;
+}
+
+.line-segment-full {
+  grid-column: 1 / -1;
+}
+
+.line-gap {
+  display: block;
+  height: var(--line-height);
 }
 
 .line-table {
@@ -381,7 +403,7 @@ textarea {
   }
 
   .line-row {
-    grid-template-columns: 0.8fr 1.1fr;
+    grid-template-columns: 0.8fr 140px;
   }
 
   .line-cast-panel {

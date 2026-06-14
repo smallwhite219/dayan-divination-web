@@ -1,8 +1,8 @@
 # Task State
 
 - Objective: Implement Dayan divination web app v1.
-- Current phase: Six-press line casting UX deployed and verified.
+- Current phase: Hexagram line alignment fix validated locally.
 - Working set: new independent React/Vite project.
 - External AI integration: deferred; v1 generates copyable prompts only.
 - Secrets: none required.
-- Next action: optional visual smoke test in browser.
+- Next action: push line alignment fix and verify live Pages bundle.

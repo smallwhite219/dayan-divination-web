@@ -3,7 +3,6 @@ import {
   buildHexagramResult,
   createAiPrompt,
   linePositionLabels,
-  renderLine,
   simulateHexagram,
   simulateLine,
   type CastMode,
@@ -214,7 +213,7 @@ function RecordedLines({ lines }: { lines: LineResult[] }) {
       {[...lines].reverse().map((line) => (
         <div key={line.position} className={line.isMoving ? 'line-row moving' : 'line-row'}>
           <span>{linePositionLabels[line.position]}</span>
-          <span className="line-mark">{renderLine(line.yinYang)}</span>
+          <LineGlyph yinYang={line.yinYang} compact />
           <span>
             {line.value} {line.label}
           </span>
@@ -288,7 +287,7 @@ function ResultPanel({
           {topDownLines.map((line) => (
             <div className={line.isMoving ? 'line-row moving' : 'line-row'} key={line.position}>
               <span>{linePositionLabels[line.position]}</span>
-              <span className="line-mark">{renderLine(line.yinYang)}</span>
+              <LineGlyph yinYang={line.yinYang} compact />
               <span>
                 {line.value} {line.label}
               </span>
@@ -327,11 +326,25 @@ function HexagramLines({ lines }: { lines: YinYang[] }) {
   return (
     <div className="hexagram-lines">
       {lines.map((line, index) => (
-        <span className={line === 'yang' ? 'yang-line' : 'yin-line'} key={`${line}-${index}`}>
-          {renderLine(line)}
-        </span>
+        <LineGlyph yinYang={line} key={`${line}-${index}`} />
       ))}
     </div>
+  );
+}
+
+function LineGlyph({ yinYang, compact = false }: { yinYang: YinYang; compact?: boolean }) {
+  return (
+    <span className={compact ? 'line-glyph line-glyph-compact' : 'line-glyph'} aria-label={yinYang === 'yang' ? '陽爻' : '陰爻'}>
+      {yinYang === 'yang' ? (
+        <span className="line-segment line-segment-full" />
+      ) : (
+        <>
+          <span className="line-segment" />
+          <span className="line-gap" />
+          <span className="line-segment" />
+        </>
+      )}
+    </span>
   );
 }
 

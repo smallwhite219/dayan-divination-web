@@ -82,3 +82,15 @@
   - Root Pages assets refreshed to `index.dev-DU6QyCz0.js` and `index-HRFNiIVI.css`.
   - Live Pages HTML verified at `https://smallwhite219.github.io/dayan-divination-web/?v=8aa3a56-2`.
   - Live JS asset returns `Content-Type: application/javascript; charset=utf-8`.
+
+## 2026-06-15 - Hexagram Line Alignment
+
+- Agent: Codex.
+- Goal: align 本卦 / 之卦 lines visually.
+- Problem: yarrow lines were rendered with text glyphs and spaces, causing yin/yang line widths to drift by font metrics.
+- Change: replaced text-rendered lines with CSS-rendered fixed-width line segments.
+- Validation:
+  - TypeScript app check passed.
+  - Core algorithm test passed: `dayan tests passed`.
+  - Vite production build passed.
+  - Root Pages assets refreshed to `index.dev-WGOiStKJ.js` and `index-B5zKw1Xi.css`.

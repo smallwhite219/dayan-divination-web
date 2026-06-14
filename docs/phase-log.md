@@ -56,3 +56,14 @@
   - `https://smallwhite219.github.io/dayan-divination-web/?v=b01f353-2` returns root HTML loading `./assets/index-DqKW2qK9.js` and `./assets/index-C7knN4Il.css`.
   - `https://smallwhite219.github.io/dayan-divination-web/assets/index-DqKW2qK9.js` returns `Content-Type: application/javascript; charset=utf-8`.
   - The page no longer requests `./src/main.tsx`.
+
+## 2026-06-14 - Manual Remainder UX Clarification
+
+- Agent: Codex.
+- Problem: Manual mode labels made left/right remainders look like arbitrary user choices.
+- Root cause: UI did not explain that the selects are for recording the observed remainders after physically splitting and counting the piles.
+- Change: added guidance text, relabeled inputs as recorded remainders, filtered right-side remainder options to valid combinations for each change, and updated the action label.
+- Validation:
+  - TypeScript app check passed.
+  - Core algorithm test passed: `dayan tests passed`.
+  - Vite production build passed.

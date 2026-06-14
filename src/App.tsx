@@ -1,5 +1,6 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import {
+  allowedRemovedStalks,
   buildHexagramResult,
   createAiPrompt,
   createChangeStep,
@@ -18,6 +19,12 @@ import {
 
 const linePositions = [1, 2, 3, 4, 5, 6] as LinePosition[];
 const remainderChoices = [1, 2, 3, 4];
+
+function validRightRemainders(changeIndex: ChangeIndex, leftRemainder: number) {
+  return allowedRemovedStalks(changeIndex)
+    .map((removed) => removed - 1 - leftRemainder)
+    .filter((remainder) => remainder >= 1 && remainder <= 4);
+}
 
 function createQuestion(question: string, note: string, mode: CastMode): CastQuestion {
   return {
@@ -58,6 +65,16 @@ function App() {
   const progress = completedLines.length * 3 + currentChanges.length;
 
   const aiPrompt = useMemo(() => (result ? createAiPrompt(result) : ''), [result]);
+  const rightRemainderOptions = useMemo(
+    () => validRightRemainders(activeChangeIndex, leftRemainder),
+    [activeChangeIndex, leftRemainder],
+  );
+
+  useEffect(() => {
+    if (!rightRemainderOptions.includes(rightRemainder)) {
+      setRightRemainder(rightRemainderOptions[0] ?? 1);
+    }
+  }, [rightRemainder, rightRemainderOptions]);
 
   function resetCast(nextMode = mode) {
     setResult(null);
@@ -206,9 +223,17 @@ function App() {
                 </div>
               </div>
 
+              <div className="manual-guidance">
+                <strong>這裡不是任意選答案</strong>
+                <p>
+                  請先實際分成左右兩堆，從右堆掛出 1 策，再把左堆與剩下的右堆各自每 4 策一組數完。
+                  下方只是把你「數到的餘數」記錄進系統；整除時請記 4，不記 0。
+                </p>
+              </div>
+
               <div className="remainder-grid">
                 <label>
-                  <span>左堆餘數</span>
+                  <span>記錄左堆數到的餘數</span>
                   <select value={leftRemainder} onChange={(event) => setLeftRemainder(Number(event.target.value))}>
                     {remainderChoices.map((choice) => (
                       <option key={choice} value={choice}>
@@ -218,9 +243,9 @@ function App() {
                   </select>
                 </label>
                 <label>
-                  <span>右堆餘數</span>
+                  <span>記錄右堆數到的餘數</span>
                   <select value={rightRemainder} onChange={(event) => setRightRemainder(Number(event.target.value))}>
-                    {remainderChoices.map((choice) => (
+                    {rightRemainderOptions.map((choice) => (
                       <option key={choice} value={choice}>
                         {choice}
                       </option>
@@ -228,15 +253,19 @@ function App() {
                   </select>
                 </label>
                 <div className="computed-total">
-                  <span>掛一 + 左餘 + 右餘</span>
+                  <span>本次移出：掛一 + 左餘 + 右餘</span>
                   <strong>{1 + leftRemainder + rightRemainder}</strong>
                 </div>
               </div>
+              <p className="input-note">
+                右堆餘數已依目前第 {activeChangeIndex} 變的合法結果過濾，所以只會出現能形成{' '}
+                {activeChangeIndex === 1 ? '5 或 9' : '4 或 8'} 策移出的選項。
+              </p>
 
               {error ? <p className="error-message">{error}</p> : null}
 
               <button className="primary-action" onClick={submitManualChange}>
-                記錄此變
+                記錄這次實際數到的結果
               </button>
 
               <div className="record-table" aria-label="已記錄變化">

@@ -37,3 +37,11 @@
 - Notes:
   - GitHub CLI was not available, so upload used plain `git push`.
   - No PR was opened because the user requested direct upload to a specific repository.
+
+## 2026-06-14 - GitHub Pages MIME Fix
+
+- Agent: Codex.
+- Problem: GitHub Pages served repository root `index.html`, which loaded `./src/main.tsx` directly and failed with MIME type `application/octet-stream`.
+- Root cause: Vite source files were pushed, but Pages was not configured to serve the compiled `dist/` output.
+- Change: added `.github/workflows/pages.yml` to build with Vite and deploy `dist/` through GitHub Pages Actions.
+- Release topology: updated Pages source mode to GitHub Actions.
